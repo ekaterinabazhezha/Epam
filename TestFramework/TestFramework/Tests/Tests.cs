@@ -99,7 +99,7 @@ public class Tests
         MainPage page = new MainPage(driver);
         page.OpenPage();
 
-        page.TestB4("Москва", "Бангкок","3","3", new DateTime(2018, 12, 27));
+        page.TestB4("Москва", "Бангкок","3","3", "09.01.2018");
     }
 
     [TestMethod]
@@ -109,7 +109,7 @@ public class Tests
         MainPage page = new MainPage(driver);
         page.OpenPage();
 
-        page.TestB5("Москва", "Бангкок", "3", "2", "2", new DateTime(2018, 02, 01));
+        page.TestB5("Москва", "Бангкок", "3", "2", "2", "09.01.2018");
     }
 
     [TestMethod]
@@ -118,7 +118,7 @@ public class Tests
         var driver = DriverInstance.GetInstance();
         MainPage page = new MainPage(driver);
         page.OpenPage();
-        page.TestB6("Москва", "Бангкок", "3", "2", "2", new DateTime(2018, 02, 01));
+        page.TestB6("Москва", "Бангкок", "3", "2", "2", "09.01.2018");
     }
 
     [TestMethod]
@@ -127,7 +127,7 @@ public class Tests
         var driver = DriverInstance.GetInstance();
         MainPage page = new MainPage(driver);
         page.OpenPage();
-        page.TestB7("Москва", "Санкт-Петербург", "3", "2", "2", new DateTime(2018, 02, 01));
+        page.TestB7("Москва", "Санкт-Петербург", "3", "2", "2", "03.01.2018");
     }
 
     [TestMethod]
@@ -136,7 +136,7 @@ public class Tests
         var driver = DriverInstance.GetInstance();
         MainPage page = new MainPage(driver);
         page.OpenPage();
-        page.TestB8("Москва", "Бангкок",  new DateTime(2018, 02, 01));
+        page.TestB8("Москва", "Бангкок", "09.01.2018");
     }
 
     [TestMethod]
@@ -145,7 +145,7 @@ public class Tests
         var driver = DriverInstance.GetInstance();
         MainPage page = new MainPage(driver);
         page.OpenPage();
-        page.TestB9("Москва", "Санкт-Петербург",new DateTime(2018, 02, 01));
+        page.TestB9("Москва", "Санкт-Петербург", "03.01.2018","01.05.1900");
     }
 
     [TestMethod]
@@ -154,7 +154,7 @@ public class Tests
         var driver = DriverInstance.GetInstance();
         MainPage page = new MainPage(driver);
         page.OpenPage();
-        page.TestB10("123456789100", "Иванов");
+        page.TestB10("123456789100", "Иванов ");
     }
 
     //[TestMethod]

@@ -28,8 +28,8 @@ namespace TestFramework.Pages
         [FindsBy(How = How.CssSelector, Using = "body > div.wrapper > main > div.search.search_type_flights.search_theme_main > div.search__wrap > form > div > div.search-form__extra > div:nth-child(3) > div > div:nth-child(3) > div.number.number_theme_main.js-counter-container > input")]
         private IWebElement NumberOfInfants;
 
-        [FindsBy(How = How.XPath, Using = "#dp1514901065273")]
-        private IWebElement DepartureDate;
+        [FindsBy(How = How.CssSelector, Using = "body > div.wrapper > main > div.search.search_type_flights.search_theme_main > div.search__wrap > form > div > div.search-form__extra > div:nth-child(2) > div.search-form__field.search-form__field_date-departure")]
+        private IWebElement DateClick;
 
         //выпадающий список куда//
         [FindsBy(How = How.CssSelector, Using = "body > div.wrapper > main > div.search.search_type_flights.search_theme_main > div.search__wrap > form > div > div.search-form__extra > div:nth-child(2) > div:nth-child(1) > div > div > a:nth-child(1)")]
@@ -48,17 +48,20 @@ namespace TestFramework.Pages
         [FindsBy(How = How.CssSelector, Using = "body > div.wrapper > main > div.search.search_type_flights.search_theme_main > div.search__wrap > form > div > div.search-form__extra > div:nth-child(2) > div:nth-child(2) > div > div > a:nth-child(6)")]
         private IWebElement WhenceBankock;
 
-        [FindsBy(How = How.CssSelector, Using = "#dp1514907851252")]
-        private IWebElement Date;
-
-        [FindsBy(How = How.CssSelector, Using = "body > div > section > div.content.content-search-result > div > div > wrap > search-mono-brand-cartesian-variants > div > div > div.flightTableWrap.mobileHide > div.flightTable > table > tbody > tr.headrow > td:nth-child(2) > div > span")]
+        [FindsBy(How = How.CssSelector, Using = "body > div > section > div.content.content-search-result > div > div > wrap > search-mono-brand-cartesian-variants > div > div > div.flightTableWrap.mobileHide > div.flightTable > table > tbody > tr.headrow > td:nth-child(2) > div > span > a")]
         private IWebElement Search;
 
-        [FindsBy(How = How.CssSelector, Using = "# compare > div.title > div > a")]
+        [FindsBy(How = How.CssSelector, Using = "#compare > div.title > div > a")]
         private IWebElement Close;
 
-        [FindsBy(How = How.CssSelector, Using = "body > div > section > div.content.content-search-result > div > div > wrap > search-mono-brand-cartesian-variants > div > div > div.flightTableWrap.mobileHide > div.flightTable > table > tbody > tr.contentRow > td.active > wrap > a")]
+        [FindsBy(How = How.CssSelector, Using = "body > div > section > div.content.content-search-result > div > div > wrap > search-mono-brand-cartesian-variants > div > div > div.flightTableWrap.mobileHide > div.flightTable > table > tbody > tr.contentRow > td:nth-child(2) > wrap > a")]
         private IWebElement Flight;
+
+        [FindsBy(How = How.CssSelector, Using = "body > div > section > div.content.content-search-result > div > div > div")]
+        private IWebElement Data;
+
+        [FindsBy(How = How.CssSelector, Using = "body > div > section > div.content > div > div > div.passengersInfo > div > form.passengerForm__js.orderHasCountry_RU.orderHasCountry_TH.ng-invalid.ng-invalid-required.ng-valid-pattern.ng-invalid-check-date-range.ng-invalid-check-date-format.ng-valid-email.ng-valid-mask > div > div > table > tbody > tr:nth-child(1) > td:nth-child(3) > div > input")]
+        private IWebElement DataDate;
 
         [FindsBy(How = How.CssSelector, Using = "body > div.wrapper > main > div.search.search_type_flights.search_theme_main > div.search__wrap > form > div > div.search-form__tabs.search-tab > a.search-tab__item.search-tab__item_view_ticket")]
         private IWebElement MyTicket;
@@ -71,6 +74,9 @@ namespace TestFramework.Pages
 
         [FindsBy(How = How.CssSelector, Using = "body > div > section > div.content > div > div > div > div.orderSearchForm__i > div > form > div.formBodyItem > div > div > button")]
         private IWebElement buttonSearch;
+
+
+
 
         private IWebDriver driver;
         private WebDriverWait wait;
@@ -137,7 +143,7 @@ namespace TestFramework.Pages
             IJavaScriptExecutor ex = (IJavaScriptExecutor)driver;
             ex.ExecuteScript("arguments[0].click();", buttonTicketSearch);
         }
-        public void TestB4(string there, string back, string adults, string teenagers, DateTime date)
+        public void TestB4(string there, string back, string adults, string teenagers, string date)
         {
             Сity​​OfDeparture.Clear();
             Сity​​OfDeparture.SendKeys(there);
@@ -155,14 +161,12 @@ namespace TestFramework.Pages
             NumberOfInfants.Clear();
             NumberOfInfants.SendKeys(teenagers);
 
-            DepartureDate.Clear();
-            DepartureDate.SendKeys(Convert.ToString(date));
-            //  Date.Click();
+            DateClick.Click();
 
             IJavaScriptExecutor ex = (IJavaScriptExecutor)driver;
             ex.ExecuteScript("arguments[0].click();", buttonTicketSearch);
         }
-        public void TestB5(string there, string back, string adults, string teenagers, string infants, DateTime date)
+        public void TestB5(string there, string back, string adults, string teenagers, string infants, string date)
         {
             Сity​​OfDeparture.Clear();
             Сity​​OfDeparture.SendKeys(there);
@@ -183,15 +187,14 @@ namespace TestFramework.Pages
             NumberOfAdults.Clear();
             NumberOfAdults.SendKeys(infants);
 
-            DepartureDate.Clear();
-            DepartureDate.SendKeys(Convert.ToString(date));
+            DateClick.Click();
 
             IJavaScriptExecutor ex = (IJavaScriptExecutor)driver;
             ex.ExecuteScript("arguments[0].click();", buttonTicketSearch);
         }
 
 
-        public void TestB6(string there, string back, string adults, string teenagers, string infants, DateTime date)
+        public void TestB6(string there, string back, string adults, string teenagers, string infants, string date)
         {
 
             Сity​​OfDeparture.Clear();
@@ -213,8 +216,7 @@ namespace TestFramework.Pages
             NumberOfAdults.Clear();
             NumberOfAdults.SendKeys(infants);
 
-            DepartureDate.Clear();
-            DepartureDate.SendKeys(Convert.ToString(date));
+            DateClick.Click();
 
             IJavaScriptExecutor ex = (IJavaScriptExecutor)driver;
             ex.ExecuteScript("arguments[0].click();", buttonTicketSearch);
@@ -229,7 +231,7 @@ namespace TestFramework.Pages
 
         }
 
-        public void TestB7(string there, string back, string adults, string teenagers, string infants, DateTime date)
+        public void TestB7(string there, string back, string adults, string teenagers, string infants, string date)
         {
 
             Сity​​OfDeparture.Clear();
@@ -251,8 +253,7 @@ namespace TestFramework.Pages
             NumberOfAdults.Clear();
             NumberOfAdults.SendKeys(infants);
 
-            DepartureDate.Clear();
-            DepartureDate.SendKeys(Convert.ToString(date));
+            DateClick.Click();
 
             IJavaScriptExecutor ex = (IJavaScriptExecutor)driver;
             ex.ExecuteScript("arguments[0].click();", buttonTicketSearch);
@@ -267,7 +268,7 @@ namespace TestFramework.Pages
 
         }
 
-        public void TestB8(string there, string back, DateTime date)
+        public void TestB8(string there, string back, string date)
         {
 
             Сity​​OfDeparture.Clear();
@@ -280,24 +281,21 @@ namespace TestFramework.Pages
 
             WhenceBankock.Click();
 
-
-            DepartureDate.Clear();
-            DepartureDate.SendKeys(Convert.ToString(date));
+            DateClick.Click();
 
             IJavaScriptExecutor ex = (IJavaScriptExecutor)driver;
             ex.ExecuteScript("arguments[0].click();", buttonTicketSearch);
 
-            IJavaScriptExecutor sr = (IJavaScriptExecutor)driver;
-            sr.ExecuteScript("arguments[0].click();", Search);
-
-            IJavaScriptExecutor cl = (IJavaScriptExecutor)driver;
-            cl.ExecuteScript("arguments[0].click();", Close);
-
             Flight.Click();
+
+            //IJavaScriptExecutor dt = (IJavaScriptExecutor)driver;
+            //dt.ExecuteScript("arguments[0].click();", Data);
+
+            Data.Click();
 
         }
 
-        public void TestB9(string there, string back, DateTime date)
+        public void TestB9(string there, string back, string date,string datadate)
         {
 
             Сity​​OfDeparture.Clear();
@@ -310,19 +308,17 @@ namespace TestFramework.Pages
 
             WhenceBankock.Click();
 
-            DepartureDate.Clear();
-            DepartureDate.SendKeys(Convert.ToString(date));
+            DateClick.Click();
 
             IJavaScriptExecutor ex = (IJavaScriptExecutor)driver;
             ex.ExecuteScript("arguments[0].click();", buttonTicketSearch);
 
-            IJavaScriptExecutor sr = (IJavaScriptExecutor)driver;
-            sr.ExecuteScript("arguments[0].click();", Search);
-
-            IJavaScriptExecutor cl = (IJavaScriptExecutor)driver;
-            cl.ExecuteScript("arguments[0].click();", Close);
-
             Flight.Click();
+
+            Data.Click();
+
+            DataDate.Clear();
+            DataDate.SendKeys(datadate);
 
         }
 
@@ -340,12 +336,5 @@ namespace TestFramework.Pages
             cl.ExecuteScript("arguments[0].click();", buttonSearch);
         }
 
-        //public void TestB11(DateTime date)
-        //{
-
-        //    Date.Clear();
-        //    Date.SendKeys(Convert.ToString(date));
-
-        //}
     }
 }
