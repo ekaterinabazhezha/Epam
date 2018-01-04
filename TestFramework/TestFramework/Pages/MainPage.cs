@@ -57,7 +57,7 @@ namespace TestFramework.Pages
         [FindsBy(How = How.CssSelector, Using = "body > div > section > div.content.content-search-result > div > div > wrap > search-mono-brand-cartesian-variants > div > div > div.flightTableWrap.mobileHide > div.flightTable > table > tbody > tr.contentRow > td:nth-child(2) > wrap > a")]
         private IWebElement Flight;
 
-        [FindsBy(How = How.CssSelector, Using = "body > div > section > div.content.content-search-result > div > div > div")]
+        [FindsBy(How = How.CssSelector, Using = "body > div > section > div.content.content-search-result > div > div > div > div > a")]
         private IWebElement Data;
 
         [FindsBy(How = How.CssSelector, Using = "body > div > section > div.content > div > div > div.passengersInfo > div > form.passengerForm__js.orderHasCountry_RU.orderHasCountry_TH.ng-invalid.ng-invalid-required.ng-valid-pattern.ng-invalid-check-date-range.ng-invalid-check-date-format.ng-valid-email.ng-valid-mask > div > div > table > tbody > tr:nth-child(1) > td:nth-child(3) > div > input")]
@@ -288,14 +288,14 @@ namespace TestFramework.Pages
 
             Flight.Click();
 
-            //IJavaScriptExecutor dt = (IJavaScriptExecutor)driver;
-            //dt.ExecuteScript("arguments[0].click();", Data);
+            IJavaScriptExecutor dt = (IJavaScriptExecutor)driver;
+            dt.ExecuteScript("arguments[0].click();", Data);
 
-            Data.Click();
+            //Data.Click();
 
         }
 
-        public void TestB9(string there, string back, string date,string datadate)
+        public void TestB9(string there, string back, string date, string datadate)
         {
 
             Сity​​OfDeparture.Clear();
@@ -315,7 +315,8 @@ namespace TestFramework.Pages
 
             Flight.Click();
 
-            Data.Click();
+            IJavaScriptExecutor dt = (IJavaScriptExecutor)driver;
+            dt.ExecuteScript("arguments[0].click();", Data);
 
             DataDate.Clear();
             DataDate.SendKeys(datadate);
@@ -336,5 +337,32 @@ namespace TestFramework.Pages
             cl.ExecuteScript("arguments[0].click();", buttonSearch);
         }
 
+        public bool GetErrorPassengers(string error)
+        {
+            try
+            {
+                var errorAirport = driver.FindElement(By.CssSelector("body > div > section > search-form > div > div > div.orderSearchError"));
+                return errorAirport.Text.Contains(error);
+            }
+            catch (NoSuchElementException)
+            {
+                return false;
+            }
+        }
+
+        public bool GetListPassengers(string geomarker1, string geomarker2)
+        {
+            try
+            {
+                var city1 = driver.FindElement(By.CssSelector("body > div > section > search-form > div > div > div.searchParams__i > div > ul > li:nth-child(1) > geo-marker-wrapper:nth-child(1) > geo-marker > div > div"));
+                return city1.Text.Contains(geomarker1);
+                var city2 = driver.FindElement(By.CssSelector("body > div > section > search-form > div > div > div.searchParams__i > div > ul > li:nth-child(1) > geo-marker-wrapper:nth-child(2) > geo-marker > div > div"));
+                return city2.Text.Contains(geomarker2);
+            }
+            catch (NoSuchElementException)
+            {
+                return false;
+            }
+        }
     }
 }

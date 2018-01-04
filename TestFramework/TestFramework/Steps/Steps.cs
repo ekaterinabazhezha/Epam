@@ -18,6 +18,5 @@ namespace TestFramework.Pages
         {
             Driver.DriverInstance.CloseBrowser();
         }
-
     }
 }

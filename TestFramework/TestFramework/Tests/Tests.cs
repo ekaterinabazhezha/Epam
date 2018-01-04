@@ -10,6 +10,11 @@ using TestFramework.Pages;
 [TestClass]
 public class Tests
 {
+
+    private const string missing_airport_error_message = "при поиске рейсов произошла ошибка";
+    private const string geocity1 = "Москва";
+    private const string geocity2 = "Бангкок";
+
     public Tests()
     {
         //
@@ -80,6 +85,7 @@ public class Tests
         page.OpenPage();
 
         page.TestB2("Москва", "Санкт-Петербург","1","9");
+        Assert.IsTrue(page.GetErrorPassengers(missing_airport_error_message));
     }
 
     [TestMethod]
@@ -89,7 +95,7 @@ public class Tests
         MainPage page = new MainPage(driver);
         page.OpenPage();
 
-        page.TestB3("Москва", "Москва, Москва, Шереметьево"/*, new DateTime(2017, 12, 27*/);
+        page.TestB3("Москва", "Москва, Москва, Шереметьево");
     }
 
     [TestMethod]
@@ -110,6 +116,7 @@ public class Tests
         page.OpenPage();
 
         page.TestB5("Москва", "Бангкок", "3", "2", "2", "09.01.2018");
+        Assert.IsTrue(page.GetListPassengers(geocity1, geocity2));
     }
 
     [TestMethod]
